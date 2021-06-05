@@ -301,6 +301,7 @@ JLI_Launch(int argc, char ** argv,              /* main argc, argc */
     /* set the -Dsun.java.launcher.* platform properties */
     SetJavaLauncherPlatformProps();
 
+    /* 调用java_md_solinux.c的JVMInit */
     return JVMInit(&ifn, threadStackSize, argc, argv, mode, what, ret);
 }
 /*
@@ -350,6 +351,7 @@ JLI_Launch(int argc, char ** argv,              /* main argc, argc */
         } \
     } while (JNI_FALSE)
 
+/* JVM初始化的核心函数 */
 int JNICALL
 JavaMain(void * _args)
 {
@@ -2029,7 +2031,7 @@ ContinueInNewThread(InvocationFunctions* ifn, jlong threadStackSize,
       args.mode = mode;
       args.what = what;
       args.ifn = *ifn;
-
+      /* 继续跟进到JavaMain函数 */
       rslt = ContinueInNewThread0(JavaMain, threadStackSize, (void*)&args);
       /* If the caller has deemed there is an error we
        * simply return that, otherwise we return the value of

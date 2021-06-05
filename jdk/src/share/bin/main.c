@@ -89,6 +89,7 @@ WinMain(HINSTANCE inst, HINSTANCE previnst, LPSTR cmdline, int cmdshow)
     __initenv = _environ;
 
 #else /* JAVAW */
+/* java的入口函数 */
 int
 main(int argc, char **argv)
 {
@@ -122,6 +123,7 @@ main(int argc, char **argv)
     margc = argc;
     margv = argv;
 #endif /* WIN32 */
+    /* 通过JLI_Launch 访问java.c的JLI_Launch函数*/
     return JLI_Launch(margc, margv,
                    sizeof(const_jargs) / sizeof(char *), const_jargs,
                    sizeof(const_appclasspath) / sizeof(char *), const_appclasspath,

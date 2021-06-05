@@ -1390,6 +1390,7 @@ JVMInit(InvocationFunctions* ifn, jlong threadStackSize,
         int mode, char *what, int ret)
 {
     ShowSplashScreen();
+    // 调用java.c的ContinueInNewThread
     return ContinueInNewThread(ifn, threadStackSize, argc, argv, mode, what, ret);
 }
 
